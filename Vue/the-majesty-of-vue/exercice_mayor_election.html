@@ -1,0 +1,59 @@
+<html> 
+    <head>
+     <title>Training Vue Mayor's Election</title>
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.cs\ s" rel="stylesheet">
+    </head>
+    <body @keyup.c="resetVotes">
+        <div class="container">
+            <h1>Mayor Election</h1>
+            <p>Start by creating an array of “Mayor” candidates. Each candidate has a “name” and a number of “votes”.</p>     
+            <p>Use a button to increase the count of votes for each candidate. Use a computed property to determine who is the current “Mayor”, and display his name.</p>
+            <p>Finally when key ‘c’ is pressed the elections start from the beginning, and all votes become 0.</p>
+            <ul class="list-group" v-for="hero in heroes">
+                <li class="list-group-item">
+                    {{hero.name}} - {{hero.votes}}
+                    <button number @click.prevent="hero.votes++">+</button>
+                </li>
+            </ul>
+            <h2>Current Mayor : {{ currentMayor.name }}</h2>
+            <p>Please Press "c" to reset votes.</p>
+        </div>
+    </body> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+    <script>
+
+        new Vue({
+            el: 'body',
+            data: { 
+                heroes: [
+                    {
+                        name: "Bruce Wayne",
+                        votes: 0
+                    },
+                    {
+                        name: "Tony Stark",
+                        votes: 0
+                    },
+                    {
+                        name: "Bruce Banner",
+                        votes: 0
+                    }       
+                ]
+            },
+            computed: { 
+                currentMayor () {
+                    return this.heroes.sort((a, b) => b.votes - a.votes)[0]
+                }
+            },
+            methods: {
+                resetVotes () { 
+                    this.heroes = this.heroes.map(hero => { 
+                        hero.votes = 0; 
+                        return hero
+                    })
+                }
+            }
+        }) 
+    </script>
+</html>
+    

@@ -1,0 +1,58 @@
+<html> 
+    <head>
+     <title>Training Vue Calculator</title>
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.cs\ s" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Type 2 numbers and choose operation. </h1>
+            <form class="form-inline">
+                <input v-model="a" number class="form-control" @keyup.enter="calculate">
+                <select v-model="operator" class="form-control">
+                    <option selected>+</option> 
+                    <option>-</option> 
+                    <option>*</option> 
+                    <option>/</option>
+                </select>
+                <input v-model="b" number class="form-control" @keyup.enter="calculate">
+                <!-- <button type="submit" @click.prevent="calculate" class="btn btn-primary">
+                    Calculate 
+                </button> -->
+            </form>
+            <h2>Result: {{a}} {{operator}} {{b}} = {{c}}</h2>
+        </div>
+    </body> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+    <script>
+
+        new Vue({
+            el: '.container',
+            data: {
+                a : 0,
+                b : 0,
+                c: null, 
+                operator: " ",
+            },
+            computed: {
+                c: function(){ 
+                    /**
+                     * Vue provide a way to avoid this line
+                     * Replace @click by click.prevent
+                     */
+                    //event.preventDefault();
+                    switch (this.operator) {     
+                        case "+":
+                            return this.a + this.b
+                        case "-":
+                            return this.a - this.b
+                        case "*":
+                            return this.a * this.b
+                        case "/":
+                            return this.a / this.b
+                    }
+                }
+            }
+        }) 
+    </script>
+</html>
+    

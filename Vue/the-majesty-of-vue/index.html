@@ -1,0 +1,70 @@
+<html> 
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.mi\ n.css" rel="stylesheet">
+        <title>Hello Vue</title> 
+    </head>
+    <body>
+        <div id="app">
+            <div class="container">
+                <ul class="list-group">
+                    <story v-for="story in stories" :story="story"></story> 
+                </ul>
+                <!-- <story txt="You should have acted !"></story>
+                <story txt="They're already here !"></story> 
+                <story txt="The Elder Scrolls told of their return !"></story>  -->
+            </div>
+        </div>
+
+        <!-- You can define template element instead of create script -->
+        <template id="story-template">
+                <li class="group-list-item">
+                    {{ story.txt }} - {{ story.writer }} - Story upvotes {{ story.upvotes }}.
+                    <button v-show="!story.voted" @click="upvote" class="btn btn-default">Up</button>
+                </li>
+        </template>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.js"></script>
+
+    <!-- Define template before declare component -->
+    <!-- <script type="text/template" id="story-template"> 
+        <h1>My horse is amazing!</h1>
+    </script> -->
+    <script type="text/javascript">
+        Vue.component('story', {
+            //template: '<h1>My horse is amazing!</h1>'
+            props: ['story'],
+            template: "#story-template",
+            methods: {
+                upvote: function() {
+                    this.story.upvotes++
+                    this.story.voted = true
+                }
+            }   
+        });
+        new Vue({   
+            el: '#app',
+            data: {
+                stories: [
+                    {
+                        txt: 'You should have acted !',
+                        writer: 'Mr. Weebl',
+                        upvotes: 28,
+                        voted: false,
+                    }, {
+                        txt: 'They\'re already here !',
+                        writer: 'Mr. Weebl',
+                        upvotes: 8,
+                        voted: false,
+                    }, {
+                        txt: 'The Elder Scrolls told of their return !',
+                        writer: 'Mr. Weebl',
+                        upvotes: 32,
+                        voted: false,
+                    }
+                ]
+            }
+           
+        }) 
+    </script>
+   
+</html>

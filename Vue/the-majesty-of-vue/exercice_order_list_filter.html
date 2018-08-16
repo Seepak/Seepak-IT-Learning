@@ -1,0 +1,58 @@
+<html> 
+    <head>
+     <title>Training Vue Order List</title>
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.cs\ s" rel="stylesheet">
+    </head>
+    <body>
+        <div id="app">
+   
+            <div class="container">
+                <h2>List Ordered by age.</h1> 
+                <ul class="list-group">
+                    <li v-for="p in people | orderBy 'age'" class="list-group-item"> 
+                        {{ p.name }} {{ p.age }}.
+                    </li> 
+                </ul>
+
+                <h2>People older than 55</h1> 
+                <ul class="list-group">
+                    <li v-for="p in people | veryOld" class="list-group-item"> 
+                        {{ p.name }} {{ p.age }}.
+                    </li> 
+                </ul>
+            </div>
+
+        </div>
+    </body> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+    <script type="text/javascript">
+         
+        Vue.filter('veryOld', function(people){
+            return people.filter(p => p.age > 55)
+        })
+        new Vue({
+            el: '.container',
+            data: {
+                people: [
+                    {
+                        name: "Tankred",
+                        age: 25
+                    },
+                    {
+                        name: "Horus",
+                        age: 57
+                    },
+                    {
+                        name: "Vulcan",
+                        age: 35
+                    },
+                    {
+                        name: "Conrad",
+                        age: 85
+                    }
+                ]
+            }
+        }) 
+    </script>
+</html>
+    
