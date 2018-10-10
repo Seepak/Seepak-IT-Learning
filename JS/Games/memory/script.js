@@ -1,7 +1,6 @@
 /**
  * Feecode Camp Tutorial memory Game
  */
-console.log('coucou toi')
 
 const cards = document.querySelectorAll('.mg__card')
 
@@ -45,7 +44,7 @@ function unFlippedCards() {
 }
 
 function resetBoard() {
-    hasFlippedCard, lockBoard= false
+    hasFlippedCard, lockBoard = false
     firstCard, secondCard = false
 }
 
